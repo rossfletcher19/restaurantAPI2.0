@@ -11,7 +11,6 @@ public class Restaurant {
     private String phone;
     private String website;
     private String email;
-    private String image;
     private int id;
     private DiningStyle diningStyle;
 
@@ -22,19 +21,16 @@ public class Restaurant {
         this.phone = phone;
         this.website = "no website listed";
         this.email = "no email available";
-        this.image = "/resources/images/uploads/no_image.jpg"; //ignore me for now
         this.diningStyle = diningStyle;
-
     }
 
-    public Restaurant(String name, String address, String zipcode, String phone, String website, String email, String image,  DiningStyle diningStyle) {
+    public Restaurant(String name, String address, String zipcode, String phone, String website, String email, DiningStyle diningStyle) {
         this.name = name;
         this.address = address;
         this.zipcode = zipcode;
         this.phone = phone;
         this.website = website;
         this.email = email;
-        this.image = image;
         this.diningStyle = diningStyle;
    }
 
@@ -114,14 +110,6 @@ public class Restaurant {
         this.email = email;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public int getId() {
         return id;
     }
@@ -137,14 +125,11 @@ public class Restaurant {
 
         Restaurant that = (Restaurant) o;
 
-        if (id != that.id) return false;
         if (!name.equals(that.name)) return false;
         if (!address.equals(that.address)) return false;
         if (!zipcode.equals(that.zipcode)) return false;
         if (!phone.equals(that.phone)) return false;
-        if (website != null ? !website.equals(that.website) : that.website != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        return image != null ? image.equals(that.image) : that.image == null;
+        return diningStyle == that.diningStyle;
     }
 
     @Override
@@ -153,10 +138,7 @@ public class Restaurant {
         result = 31 * result + address.hashCode();
         result = 31 * result + zipcode.hashCode();
         result = 31 * result + phone.hashCode();
-        result = 31 * result + (website != null ? website.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (image != null ? image.hashCode() : 0);
-        result = 31 * result + id;
+        result = 31 * result + diningStyle.hashCode();
         return result;
     }
 }
