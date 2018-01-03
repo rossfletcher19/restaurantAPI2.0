@@ -16,7 +16,7 @@ public class Review {
     public Review(String writtenBy, int rating) {
         this.writtenBy = writtenBy;
         this.rating = rating;
-        this.createdAt = LocalDateTime.now();
+        this.createdAt = Timestamp.valueOf(LocalDateTime.now());
     }
 
     @Override
