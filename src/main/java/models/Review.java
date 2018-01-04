@@ -16,7 +16,6 @@ public class Review {
     public Review(String writtenBy, int rating) {
         this.writtenBy = writtenBy;
         this.rating = rating;
-        this.createdAt = Timestamp.valueOf(LocalDateTime.now());
     }
 
     @Override
@@ -28,13 +27,15 @@ public class Review {
 
         if (rating != review.rating) return false;
         if (id != review.id) return false;
-        return writtenBy.equals(review.writtenBy);
+        if (writtenBy != null ? !writtenBy.equals(review.writtenBy) : review.writtenBy != null) return false;
+        return createdAt != null ? createdAt.equals(review.createdAt) : review.createdAt == null;
     }
 
     @Override
     public int hashCode() {
-        int result = writtenBy.hashCode();
+        int result = writtenBy != null ? writtenBy.hashCode() : 0;
         result = 31 * result + rating;
+        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + id;
         return result;
     }
