@@ -1,6 +1,5 @@
 package models;
 
-import enums.DiningStyle;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -101,11 +100,11 @@ public class RestaurantTest {
     //helpers
 
     public Restaurant setupRestaurant (){
-        return new Restaurant("Fish Witch", "214 NE Broadway", "97232", "503-402-9874", "http://fishwitch.com", "hellofishy@fishwitch.com", DiningStyle.CASUAL );
+        return new Restaurant("Fish Witch", "214 NE Broadway", "97232", "503-402-9874", "http://fishwitch.com", "hellofishy@fishwitch.com" );
 
     }
 
     public Restaurant setupAltRestaurant (){
-        return new Restaurant("Fish Witch", "214 NE Broadway", "97232", "503-402-9874", DiningStyle.CASUAL);
+        return new Restaurant("Fish Witch", "214 NE Broadway", "97232", "503-402-9874");
     }
 }
