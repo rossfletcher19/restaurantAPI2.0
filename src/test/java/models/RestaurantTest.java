@@ -9,8 +9,6 @@ import static org.junit.Assert.*;
 
 public class RestaurantTest {
 
-
-
     @Before
     public void setUp() throws Exception {
     }
@@ -56,18 +54,6 @@ public class RestaurantTest {
         assertEquals("no email available", testRestaurant.getEmail());
     }
 
-    @Test
-    public void getImageReturnsCorrectImage() throws Exception {
-        Restaurant testRestaurant = setupAltRestaurant();
-        assertEquals("/resources/images/uploads/no_image.jpg", testRestaurant.getImage());
-    }
-
-    @Test
-    public void getDiningStylereturnsCorrectPhrase() throws Exception {
-        Restaurant testRestaurant = setupRestaurant();
-        assertEquals("Fish Witch likes to keep things pretty casual. No stuffy suits here!", testRestaurant.getDiningStyle());
-    }
-
     //setter tests
 
     @Test
@@ -111,23 +97,15 @@ public class RestaurantTest {
         assertNotEquals("hellofishy@fishwitch.com", testRestaurant.getEmail());
     }
 
-    @Test
-    public void setImageSetsCorrectImage() throws Exception {
-        Restaurant testRestaurant = setupRestaurant();
-        testRestaurant.setImage("steakhouse.jpg");
-        assertNotEquals("fishwitch.jpg", testRestaurant.getImage());
-    }
 
     //helpers
 
     public Restaurant setupRestaurant (){
-        return new Restaurant("Fish Witch", "214 NE Broadway", "97232", "503-402-9874", "http://fishwitch.com", "hellofishy@fishwitch.com", "fishwitch.jpg", DiningStyle.CASUAL );
+        return new Restaurant("Fish Witch", "214 NE Broadway", "97232", "503-402-9874", "http://fishwitch.com", "hellofishy@fishwitch.com", DiningStyle.CASUAL );
 
     }
 
     public Restaurant setupAltRestaurant (){
         return new Restaurant("Fish Witch", "214 NE Broadway", "97232", "503-402-9874", DiningStyle.CASUAL);
-
     }
-
 }

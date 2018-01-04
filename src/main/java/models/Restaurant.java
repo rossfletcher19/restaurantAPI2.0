@@ -34,34 +34,6 @@ public class Restaurant {
         this.diningStyle = diningStyle;
    }
 
-    public String getDiningStyle(){
-        String message;
-        switch (this.diningStyle){
-            case CASUAL:
-                message =  String.format("%s likes to keep things pretty casual. No stuffy suits here!", this.getName());
-            break;
-
-            case FASTFOOD:
-               message = String.format("%s is a fast food restaurant. Don't expect ambiance.", this.getName());
-                break;
-
-            case FOODCART:
-                message =  String.format("%s is part of the Portland Foodcart scene. Bring an umbrella if its raining!", this.getName());
-                break;
-
-            case FINEDINING:
-                message =  String.format("Get ready to spend some coin at %s. Don't arrive underdressed - it's posh.", this.getName());
-                break;
-
-           default:
-               message =  ("Something went wrong. Please try again.");
-               break;
-        }
-        return message;
-    }
-
-
-
     public String getName() {
         return name;
     }
