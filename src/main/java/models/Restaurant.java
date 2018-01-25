@@ -92,10 +92,11 @@ public class Restaurant {
 
         Restaurant that = (Restaurant) o;
 
+        if (id != that.id) return false;
         if (!name.equals(that.name)) return false;
-        if (!address.equals(that.address)) return false;
-        if (!zipcode.equals(that.zipcode)) return false;
-        if (!phone.equals(that.phone)) return false;
+        if (address != null ? !address.equals(that.address) : that.address != null) return false;
+        if (zipcode != null ? !zipcode.equals(that.zipcode) : that.zipcode != null) return false;
+        if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
         if (website != null ? !website.equals(that.website) : that.website != null) return false;
         return email != null ? email.equals(that.email) : that.email == null;
     }
@@ -103,11 +104,12 @@ public class Restaurant {
     @Override
     public int hashCode() {
         int result = name.hashCode();
-        result = 31 * result + address.hashCode();
-        result = 31 * result + zipcode.hashCode();
-        result = 31 * result + phone.hashCode();
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (zipcode != null ? zipcode.hashCode() : 0);
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (website != null ? website.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + id;
         return result;
     }
 }

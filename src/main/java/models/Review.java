@@ -1,26 +1,24 @@
 package models;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 
-/**
- * Created by epicodus_staff on 7/25/17.
- */
 public class Review {
 
-    //comment to persist across branches!!!
-
-    private int id;
     private String writtenBy;
-    private int rating;
     private String content;
+    private int rating;
     private int restaurantId;
+    private int id;
 
-    public Review(String writtenBy, int rating, String content, int restaurantId) {
+    public Review(String writtenBy, String content, int rating, int restaurantId) {
         this.writtenBy = writtenBy;
-        this.rating = rating;
         this.content = content;
+        this.rating = rating;
         this.restaurantId = restaurantId;
     }
+
 
     public int getId() {
         return id;
@@ -62,6 +60,7 @@ public class Review {
         this.restaurantId = restaurantId;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,16 +70,18 @@ public class Review {
 
         if (rating != review.rating) return false;
         if (restaurantId != review.restaurantId) return false;
+        if (id != review.id) return false;
         if (!writtenBy.equals(review.writtenBy)) return false;
-        return content.equals(review.content);
+        return content != null ? content.equals(review.content) : review.content == null;
     }
 
     @Override
     public int hashCode() {
         int result = writtenBy.hashCode();
+        result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + rating;
-        result = 31 * result + content.hashCode();
         result = 31 * result + restaurantId;
+        result = 31 * result + id;
         return result;
     }
 }
