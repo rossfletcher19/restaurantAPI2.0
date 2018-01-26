@@ -63,7 +63,6 @@ public class Sql2oReviewDAOTest {
 
         assertEquals(2, reviewDAO.getAllReviewsByRestaurant(testRestaurant.getId()).size());
         assertEquals(0, reviewDAO.getAllReviewsByRestaurant(otherRestaurant.getId()).size());
-
     }
 
     @Test
@@ -81,8 +80,6 @@ public class Sql2oReviewDAOTest {
 
     assertEquals(2, reviewDAO.getAll().size());
     assertArrayEquals(new Object[]{"Captain Kirk", "food coma!",3, 1}, new Object[]{reviewFromDatabase.getWrittenBy(), reviewFromDatabase.getContent(), reviewFromDatabase.getRating(),  reviewFromDatabase.getId()});
-
-
     }
 
     @Test
@@ -93,7 +90,6 @@ public class Sql2oReviewDAOTest {
         reviewDAO.add(testReview);
         reviewDAO.deleteById(testReview.getId());
         assertEquals(0, reviewDAO.getAllReviewsByRestaurant(testRestaurant.getId()).size());
-
     }
 
 }

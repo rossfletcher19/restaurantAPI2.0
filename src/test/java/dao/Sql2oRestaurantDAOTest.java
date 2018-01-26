@@ -68,7 +68,6 @@ public class Sql2oRestaurantDAOTest {
     public void updateCorrectlyUpdatesRestaurantProperties() throws Exception {
         Restaurant testRestaurant = setupRestaurant();
         restaurantDAO.add(testRestaurant);
-
         restaurantDAO.update(testRestaurant.getId(), "Screen Door", "4321 SE Burnside", "97322","503-876-5309", "wwww.screendoor.com","screendoor@email.com");
         Restaurant updatedRestaurant = restaurantDAO.findById(testRestaurant.getId());
         assertNotEquals(testRestaurant, updatedRestaurant);
@@ -86,17 +85,13 @@ public class Sql2oRestaurantDAOTest {
     public void avgRatingForARestaurantIsCorrectlyCalc() throws Exception {
         Restaurant testRestaurant = setupRestaurant();
         restaurantDAO.add(testRestaurant);
-
         int testRestaurantId = testRestaurant.getId();
-
         Review testReview2 = new Review("Ronald McDonald", "Adequate appetizers!", 75, testRestaurant.getId());
         reviewDAO.add(testReview2);
-
         Review testReview1 = new Review("Wendy", "foodcoma!", 95, testRestaurant.getId());
         reviewDAO.add(testReview1);
-
         assertEquals(85, restaurantDAO.avgRestaurantRating(testRestaurantId));
-
     }
+
 
 }

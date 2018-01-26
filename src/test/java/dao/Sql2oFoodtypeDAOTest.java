@@ -27,7 +27,6 @@ public class Sql2oFoodtypeDAOTest {
         return new Restaurant("Screen Door", "1234 SE Burnside", "97232", "503-876-5309");
     }
 
-
     @Before
     public void setUp() throws Exception {
         String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
@@ -63,6 +62,23 @@ public class Sql2oFoodtypeDAOTest {
         foodtypeDAO.add(foodtype);
         foodtypeDAO.deleteById(foodtype.getId());
         assertEquals(0, foodtypeDAO.getAll().size());
+    }
+
+    @Test
+    public void addFoodtypeToRestaurantAddsTypeCorrectly() throws Exception {
+        Restaurant testRestaurant = setupRestaurant();
+        Restaurant altRestaurant = setupAltRestaurant();
+
+        restaurantDAO.add(testRestaurant);
+        restaurantDAO.add(altRestaurant);
+
+        Foodtype testFoodtype = setupNewFoodtype();
+
+        foodtypeDAO.add(testFoodtype);
+
+        foodtypeDAO.addFoodTypeToRestaurant(testFoodtype, testRestaurant);
+        foodtypeDAO.addFoodTypeToRestaurant(testFoodtype, altRestaurant);
+        assertEquals(2, foodtypeDAO.getAllRestaurantsForAFoodtype(testFoodtype.getId()).size());
     }
 
 }
