@@ -39,7 +39,7 @@ public class Sql2oReviewDAOTest {
     }
 
     @Test // adding review sets id
-    public void add() throws Exception {
+    public void addCorrectlyAddsAReview() throws Exception {
         Restaurant testRestaurant = setupRestaurant();
         restaurantDAO.add(testRestaurant);
         Review testReview = new Review("Ross F.","Great Food!",5, testRestaurant.getId());
@@ -83,7 +83,7 @@ public class Sql2oReviewDAOTest {
     }
 
     @Test
-    public void deleteById() throws Exception {
+    public void deleteByIdDeletesAReviewByIdCorrectly() throws Exception {
         Restaurant testRestaurant = setupRestaurant();
         restaurantDAO.add(testRestaurant);
         Review testReview = new Review("Captain Kirk","food coma!",3, testRestaurant.getId());

@@ -40,7 +40,7 @@ public class Sql2oRestaurantDAOTest {
     }
 
     @Test
-    public void addFoodSetsId() throws Exception {
+    public void addSetsIdAndAddsARestaurant() throws Exception {
         Restaurant testRestaurant = setupRestaurant();
         int originalRestaurantID = testRestaurant.getId();
         restaurantDAO.add(testRestaurant);
