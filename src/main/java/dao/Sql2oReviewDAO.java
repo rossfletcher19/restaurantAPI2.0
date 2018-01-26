@@ -37,11 +37,14 @@ public class Sql2oReviewDAO implements ReviewDAO {
                     .executeAndFetch(Review.class);
         }
     }
-//
-//    @Override
-//    public List<Review> getAll() {
-//        return null;
-//    }
+
+    @Override
+    public List<Review> getAll() {
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM reviews")
+                    .executeAndFetch(Review.class);
+        }
+    }
 //
 //    @Override
 //    public void deleteById(int id) {

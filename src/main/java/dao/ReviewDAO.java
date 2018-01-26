@@ -11,7 +11,7 @@ public interface ReviewDAO {
 
     //read
     List<Review> getAllReviewsByRestaurant(int restaurantId); // H & G
-//    List<Review> getAll();
+    List<Review> getAll();
 
     //update
     //omit for now

@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class Sql2oReviewDAOTest {
@@ -62,7 +63,22 @@ public class Sql2oReviewDAOTest {
     }
 
     @Test
-    public void getAll() throws Exception {
+    public void getAllReturnsAllReviews() throws Exception {
+    Restaurant testRestaurant = setupRestaurant();
+    restaurantDAO.add(testRestaurant);
+
+    Review testReview = new Review("Captain Kirk","food coma!",3, testRestaurant.getId());
+    reviewDAO.add(testReview);
+
+    Review otherReview = new Review("Mr. Spock","Passable",1, testRestaurant.getId());
+    reviewDAO.add(otherReview);
+
+    Review reviewFromDatabase = reviewDAO.getAll().get(0);
+
+    assertEquals(2, reviewDAO.getAll().size());
+    assertArrayEquals(new Object[]{"Captain Kirk", "food coma!",3, 1}, new Object[]{reviewFromDatabase.getWrittenBy(), reviewFromDatabase.getContent(), reviewFromDatabase.getRating(),  reviewFromDatabase.getId()});
+
+
     }
 
     @Test
