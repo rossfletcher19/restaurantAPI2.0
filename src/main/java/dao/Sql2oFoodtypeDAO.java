@@ -29,10 +29,10 @@ public class Sql2oFoodtypeDAO implements FoodtypeDAO{
         }
     }
 
-//    @Override
-//    public List<Foodtype> getAll() {
-//        return null;
-//    }
+    @Override
+    public List<Foodtype> getAll() {
+        return null;
+    }
 //
 //    @Override
 //    public void deleteById(int id) {
