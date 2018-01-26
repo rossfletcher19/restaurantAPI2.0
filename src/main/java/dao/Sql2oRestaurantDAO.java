@@ -17,16 +17,16 @@ public class Sql2oRestaurantDAO implements RestaurantDAO {
 
     @Override
     public void add(Restaurant restaurant) {
-//        String sql = "INSERT INTO restaurants (name, address, zipcode, phone, website, email) VALUES (:name, :address, :zipcode, :phone, :website, :email)";
-//        try (Connection con = sql2o.open()) {
-//            int id = (int) con.createQuery(sql)
-//                    .bind(restaurant)
-//                    .executeUpdate()
-//                    .getKey();
-//            restaurant.setId(id);
-//        } catch (Sql2oException ex) {
-//            System.out.println(ex);
-//        }
+        String sql = "INSERT INTO restaurants (name, address, zipcode, phone, website, email) VALUES (:name, :address, :zipcode, :phone, :website, :email)";
+        try (Connection con = sql2o.open()) {
+            int id = (int) con.createQuery(sql)
+                    .bind(restaurant)
+                    .executeUpdate()
+                    .getKey();
+            restaurant.setId(id);
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
 
     }
 
