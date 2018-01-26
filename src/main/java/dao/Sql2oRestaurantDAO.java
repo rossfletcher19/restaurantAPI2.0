@@ -30,10 +30,10 @@ public class Sql2oRestaurantDAO implements RestaurantDAO {
 
     }
 
-//    @Override
-//    public List<Restaurant> getAll() {
-//        return null;
-//    }
+    @Override
+    public List<Restaurant> getAll() {
+        return null;
+    }
 //
 //    @Override
 //    public Restaurant findById(int id) {
