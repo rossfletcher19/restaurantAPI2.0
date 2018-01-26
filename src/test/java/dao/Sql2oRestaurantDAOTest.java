@@ -53,7 +53,7 @@ public class Sql2oRestaurantDAOTest {
     }
 
     @Test
-    public void findById() throws Exception {
+    public void findByIdReturnsCorrectRestaurantById() throws Exception {
         Restaurant testRestaurant = setupRestaurant();
         restaurantDAO.add(testRestaurant);
         Restaurant foundRestaurant = restaurantDAO.findById(testRestaurant.getId());
@@ -61,7 +61,7 @@ public class Sql2oRestaurantDAOTest {
     }
 
     @Test
-    public void update() throws Exception {
+    public void updateUpdatesRestaurantPropertiesCorrectly() throws Exception {
         Restaurant testRestaurant = setupRestaurant();
         restaurantDAO.add(testRestaurant);
 
