@@ -32,7 +32,10 @@ public class Sql2oRestaurantDAO implements RestaurantDAO {
 
     @Override
     public List<Restaurant> getAll() {
-        return null;
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM restaurants")
+                    .executeAndFetch(Restaurant.class);
+        }
     }
 //
 //    @Override
