@@ -54,6 +54,10 @@ public class Sql2oRestaurantDAOTest {
 
     @Test
     public void findById() throws Exception {
+        Restaurant testRestaurant = setupRestaurant();
+        restaurantDAO.add(testRestaurant);
+        Restaurant foundRestaurant = restaurantDAO.findById(testRestaurant.getId());
+        assertEquals(testRestaurant, foundRestaurant);
     }
 
     @Test

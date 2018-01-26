@@ -37,11 +37,11 @@ public class Sql2oRestaurantDAO implements RestaurantDAO {
                     .executeAndFetch(Restaurant.class);
         }
     }
-//
-//    @Override
-//    public Restaurant findById(int id) {
-//        return null;
-//    }
+
+    @Override
+    public Restaurant findById(int id) {
+        return null;
+    }
 //
 //    @Override
 //    public void update(int id, String name, String address, String zipcode, String phone, String website, String email) {
