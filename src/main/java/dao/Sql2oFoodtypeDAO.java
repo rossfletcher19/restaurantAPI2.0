@@ -38,9 +38,9 @@ public class Sql2oFoodtypeDAO implements FoodtypeDAO{
         }
 
     }
-//
-//    @Override
-//    public void deleteById(int id) {
-//
-//    }
+
+    @Override
+    public void deleteById(int id) {
+
+    }
 }

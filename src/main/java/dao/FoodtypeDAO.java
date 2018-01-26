@@ -19,6 +19,6 @@ public interface FoodtypeDAO {
 
 
     //delete
-//    void deleteById(int id);
+    void deleteById(int id);
 
 }
