@@ -17,7 +17,7 @@ public class Sql2oRestaurantDAOTest {
     private Sql2oFoodtypeDAO foodtypeDAO;
 
     public Restaurant setupRestaurant (){
-        return new Restaurant("Fish Witch", "214 NE Broadway", "97232", "503-402-9874", "http://fishwitch.com", "hellofishy@fishwitch.com");
+        return new Restaurant("Screen Door", "1234 SE Burnside", "97232", "503-876-5309", "http://screendoor.com", "screendoor@email.com");
     }
 
     @Before
@@ -62,6 +62,12 @@ public class Sql2oRestaurantDAOTest {
 
     @Test
     public void update() throws Exception {
+        Restaurant testRestaurant = setupRestaurant();
+        restaurantDAO.add(testRestaurant);
+
+        restaurantDAO.update(testRestaurant.getId(), "Screen Door", "4321 SE Burnside", "97322","503-876-5309", "wwww.screendoor.com","screendoor@email.com");
+        Restaurant updatedRestaurant = restaurantDAO.findById(testRestaurant.getId());
+        assertNotEquals(testRestaurant, updatedRestaurant);
     }
 
     @Test

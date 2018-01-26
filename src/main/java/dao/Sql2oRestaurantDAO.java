@@ -46,11 +46,24 @@ public class Sql2oRestaurantDAO implements RestaurantDAO {
                     .executeAndFetchFirst(Restaurant.class);
         }
     }
-//
-//    @Override
-//    public void update(int id, String name, String address, String zipcode, String phone, String website, String email) {
-//
-//    }
+
+    @Override
+    public void update(int id, String name, String address, String zipcode, String phone, String website, String email) {
+//        String sql = "UPDATE restaurants SET name = :name, address = :address, zipcode = :zipcode, phone = :phone, website = :website, email = :email WHERE id = :id";
+//        try(Connection con = sql2o.open()) {
+//            con.createQuery(sql)
+//                    .addParameter("name", name)
+//                    .addParameter("address", address)
+//                    .addParameter("zipcode", zipcode)
+//                    .addParameter("phone", phone)
+//                    .addParameter("website", website)
+//                    .addParameter("email", email)
+//                    .addParameter("id", id)
+//                    .executeUpdate();
+//        } catch (Sql2oException ex) {
+//            System.out.println(ex);
+//        }
+    }
 //
 //    @Override
 //    public void deleteById(int id) {
