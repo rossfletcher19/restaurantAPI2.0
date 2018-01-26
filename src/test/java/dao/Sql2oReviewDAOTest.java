@@ -83,6 +83,8 @@ public class Sql2oReviewDAOTest {
 
     @Test
     public void deleteById() throws Exception {
+
+
     }
 
 }
