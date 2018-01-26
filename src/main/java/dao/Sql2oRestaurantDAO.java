@@ -90,9 +90,6 @@ public class Sql2oRestaurantDAO implements RestaurantDAO {
                 reviewTotal += reviews.get(i).getRating();
             } return reviewTotal / reviews.size();
 
-//            for (Review review : reviews) {
-//                reviewTotal += review.getRating();
-//            } return reviewTotal / reviews.size();
         }
 
     }

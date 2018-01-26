@@ -98,7 +98,7 @@ public class Sql2oRestaurantDAOTest {
 
 
 
-        assertEquals(50, restaurantDAO.avgRestaurantRating(testRestaurantId));
+        assertEquals(85, restaurantDAO.avgRestaurantRating(testRestaurantId));
 
     }
 
