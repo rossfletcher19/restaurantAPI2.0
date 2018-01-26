@@ -1,11 +1,14 @@
 package dao;
 
+import com.sun.org.apache.regexp.internal.RE;
 import models.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -91,6 +94,24 @@ public class Sql2oRestaurantDAOTest {
         Review testReview1 = new Review("Wendy", "foodcoma!", 95, testRestaurant.getId());
         reviewDAO.add(testReview1);
         assertEquals(85, restaurantDAO.avgRestaurantRating(testRestaurantId));
+    }
+
+    @Test
+    public void getAllFoodtypesForARestaurant() throws Exception {
+        Foodtype testFoodtype = new Foodtype("Italian");
+        foodtypeDAO.add(testFoodtype);
+
+        Foodtype otherTestFoodtype = new Foodtype("Bar Food");
+        foodtypeDAO.add(otherTestFoodtype);
+
+        Restaurant testRestaurant = setupRestaurant();
+        restaurantDAO.add(testRestaurant);
+        restaurantDAO.addRestaurantToFoodType(testRestaurant, testFoodtype);
+        restaurantDAO.addRestaurantToFoodType(testRestaurant, otherTestFoodtype);
+
+        Foodtype[] foodtypes = {testFoodtype, otherTestFoodtype};
+
+        assertEquals(restaurantDAO.getAllFoodtypesForARestaurant(testFoodtype.getId()), Arrays.asList(foodtypes));
     }
 
 

@@ -98,12 +98,37 @@ public class Sql2oRestaurantDAO implements RestaurantDAO {
 
     @Override
     public void addRestaurantToFoodType(Restaurant restaurant, Foodtype foodtype) {
-
+        String sql = "INSERT INTO restaurants_foodtypes (restaurantid, foodtypeid) VALUES (:restaurantid, :foodtypeid)";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("restaurantid", restaurant.getId())
+                    .addParameter("foodtypeid", foodtype.getId())
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 
     @Override
     public List<Foodtype> getAllFoodtypesForARestaurant(int restaurantid) {
-        List<Foodtype> foodtypes = new ArrayList();
+        ArrayList<Foodtype> foodtypes = new ArrayList<>();
+
+        String joinQuery = "SELECT foodtypeid FROM restaurants_foodtypes WHERE restaurantid = :restaurantid";
+
+        try (Connection con = sql2o.open()) {
+            List<Integer> allFoodtypesIds = con.createQuery(joinQuery)
+                    .addParameter("restaurantid", restaurantid)
+                    .executeAndFetch(Integer.class);
+            for (Integer foodtypeid : allFoodtypesIds) {
+                String foodtypeQuery = "SELECT * FROM foodtypes WHERE id = :foodtypeid";
+                foodtypes.add(
+                        con.createQuery(foodtypeQuery)
+                        .addParameter("foodtypeid", foodtypeid)
+                        .executeAndFetchFirst(Foodtype.class));
+            }
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
         return foodtypes;
     }
 
