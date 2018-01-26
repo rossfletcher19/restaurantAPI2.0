@@ -83,7 +83,12 @@ public class Sql2oReviewDAOTest {
 
     @Test
     public void deleteById() throws Exception {
-
+        Restaurant testRestaurant = setupRestaurant();
+        restaurantDAO.add(testRestaurant);
+        Review testReview = new Review("Captain Kirk","food coma!",3, testRestaurant.getId());
+        reviewDAO.add(testReview);
+        reviewDAO.deleteById(testReview.getId());
+        assertEquals(0, reviewDAO.getAllReviewsByRestaurant(testRestaurant.getId()).size());
 
     }
 

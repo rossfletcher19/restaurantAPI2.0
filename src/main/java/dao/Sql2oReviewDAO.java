@@ -45,9 +45,12 @@ public class Sql2oReviewDAO implements ReviewDAO {
                     .executeAndFetch(Review.class);
         }
     }
-//
-//    @Override
-//    public void deleteById(int id) {
-//
-//    }
+
+    @Override
+    public void deleteById(int id) {
+
+    }
+
+
+
 }
