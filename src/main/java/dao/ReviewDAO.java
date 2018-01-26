@@ -2,6 +2,7 @@ package dao;
 
 import models.Review;
 
+import javax.print.DocFlavor;
 import java.util.List;
 
 public interface ReviewDAO {
@@ -14,7 +15,7 @@ public interface ReviewDAO {
     List<Review> getAll();
 
     //update
-    //omit for now
+    // no update yet
 
     //delete
     void deleteById(int id); //M

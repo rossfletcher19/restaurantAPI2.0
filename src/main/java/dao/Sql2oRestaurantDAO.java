@@ -76,4 +76,16 @@ public class Sql2oRestaurantDAO implements RestaurantDAO {
             System.out.println(ex);
         }
     }
+
+    @Override
+    public int avgRestaurantRating(int id) {
+//        String sql = "SELECT * FROM reviews WHERE id = :id";
+//        int reviewTotal = 0;
+//        try (Connection con = sql2o.open()) {
+//            List
+//        }
+        return 1;
+    }
+
+
 }

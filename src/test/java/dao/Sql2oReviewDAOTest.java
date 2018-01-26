@@ -16,8 +16,12 @@ public class Sql2oReviewDAOTest {
     private Sql2oReviewDAO reviewDAO;
     private Sql2oRestaurantDAO restaurantDAO;
 
+    public Review setupNewReview() {
+        return new Review("Ross F.", "Great Southern Food!", 5, 1);
+    }
+
     public Restaurant setupRestaurant (){
-        return new Restaurant("Fish Witch", "214 NE Broadway", "97232", "503-402-9874", "http://fishwitch.com", "hellofishy@fishwitch.com");
+        return new Restaurant("Screen Door", "1234 SE Burnside", "97232", "503-876-5309", "http://screendoor.com", "screendoor@email.com");
     }
 
     @Before

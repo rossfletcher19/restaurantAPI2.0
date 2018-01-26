@@ -13,6 +13,7 @@ public interface RestaurantDAO {
     //read
     List<Restaurant> getAll(); //A
     // List<Foodtype> getAllFoodtypesForARestaurant(int restaurantId); //D & E - we will implement this soon.
+    int avgRestaurantRating(int id);
 
     Restaurant findById(int id); //B & C
 

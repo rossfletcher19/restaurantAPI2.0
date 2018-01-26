@@ -20,6 +20,14 @@ public class Sql2oRestaurantDAOTest {
         return new Restaurant("Screen Door", "1234 SE Burnside", "97232", "503-876-5309", "http://screendoor.com", "screendoor@email.com");
     }
 
+    public Review setupNewReview1() {
+        return new Review("Ross F.", "Great Southern Food!", 95, 1);
+    }
+
+    public Review setupNewReview2() {
+        return new Review("Ross F.", "Passable Food!", 55, 1);
+    }
+
     @Before
     public void setUp() throws Exception {
         String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
@@ -53,7 +61,7 @@ public class Sql2oRestaurantDAOTest {
     }
 
     @Test
-    public void findByIdReturnsCorrectRestaurantById() throws Exception {
+    public void findByIdCorrectlyFindsARestaurantById() throws Exception {
         Restaurant testRestaurant = setupRestaurant();
         restaurantDAO.add(testRestaurant);
         Restaurant foundRestaurant = restaurantDAO.findById(testRestaurant.getId());
@@ -61,7 +69,7 @@ public class Sql2oRestaurantDAOTest {
     }
 
     @Test
-    public void updateUpdatesRestaurantPropertiesCorrectly() throws Exception {
+    public void updateCorrectlyUpdatesRestaurantProperties() throws Exception {
         Restaurant testRestaurant = setupRestaurant();
         restaurantDAO.add(testRestaurant);
 
@@ -76,6 +84,22 @@ public class Sql2oRestaurantDAOTest {
         restaurantDAO.add(testRestaurant);
         restaurantDAO.deleteById(testRestaurant.getId());
         assertEquals(0, restaurantDAO.getAll().size());
+    }
+
+    @Test
+    public void avgRatingForARestaurantIsCorrectlyCalc() throws Exception {
+        Restaurant testRestaurant = setupRestaurant();
+        restaurantDAO.add(testRestaurant);
+
+        int testRestaurantId = testRestaurant.getId();
+
+        Review testReview1 = setupNewReview1();
+        reviewDAO.add(testReview1);
+        Review testReview2 = setupNewReview2();
+        reviewDAO.add(testReview2);
+
+        assertEquals(75, restaurantDAO.avgRestaurantRating(testRestaurantId));
+
     }
 
 }
