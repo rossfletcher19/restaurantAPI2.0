@@ -20,6 +20,6 @@ public interface RestaurantDAO {
     void update(int id, String name, String address, String zipcode, String phone, String website, String email); //L
 
     //delete
-//    void deleteById(int id); //K
+    void deleteById(int id); //K
 
 }

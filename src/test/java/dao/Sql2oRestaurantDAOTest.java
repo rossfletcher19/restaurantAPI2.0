@@ -71,7 +71,11 @@ public class Sql2oRestaurantDAOTest {
     }
 
     @Test
-    public void deleteById() throws Exception {
+    public void deleteByIdDeletesCorrectRestaurant() throws Exception {
+        Restaurant testRestaurant = setupRestaurant();
+        restaurantDAO.add(testRestaurant);
+        restaurantDAO.deleteById(testRestaurant.getId());
+        assertEquals(0, restaurantDAO.getAll().size());
     }
 
 }

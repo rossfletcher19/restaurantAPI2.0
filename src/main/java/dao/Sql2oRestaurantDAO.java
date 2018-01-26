@@ -64,9 +64,9 @@ public class Sql2oRestaurantDAO implements RestaurantDAO {
             System.out.println(ex);
         }
     }
-//
-//    @Override
-//    public void deleteById(int id) {
-//
-//    }
+
+    @Override
+    public void deleteById(int id) {
+
+    }
 }
