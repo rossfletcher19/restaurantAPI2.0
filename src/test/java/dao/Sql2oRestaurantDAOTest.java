@@ -95,9 +95,6 @@ public class Sql2oRestaurantDAOTest {
         Review testReview1 = new Review("Wendy", "foodcoma!", 95, testRestaurant.getId());
         reviewDAO.add(testReview1);
 
-
-
-
         assertEquals(85, restaurantDAO.avgRestaurantRating(testRestaurantId));
 
     }

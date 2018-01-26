@@ -1,7 +1,9 @@
 package dao;
 
 import models.Foodtype;
+import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+import org.sql2o.Sql2oException;
 
 import java.util.List;
 
@@ -15,7 +17,16 @@ public class Sql2oFoodtypeDAO implements FoodtypeDAO{
 
     @Override
     public void add(Foodtype foodtype) {
-
+//        String sql = "INSERT INTO  foodtypes (foodtype) VALUES (:foodtype)";
+//        try (Connection con = sql2o.open()) {
+//            int foodtypeId = (int) con.createQuery(sql)
+//                    .bind(foodtype)
+//                    .executeUpdate()
+//                    .getKey();
+//            foodtype.setId(foodtypeId);
+//        } catch (Sql2oException ex) {
+//            System.out.println(ex);
+//        }
     }
 
 //    @Override
