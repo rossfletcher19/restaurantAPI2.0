@@ -1,6 +1,7 @@
 package dao;
 
 import models.Restaurant;
+import models.Review;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -78,13 +79,22 @@ public class Sql2oRestaurantDAO implements RestaurantDAO {
     }
 
     @Override
-    public int avgRestaurantRating(int id) {
-//        String sql = "SELECT * FROM reviews WHERE id = :id";
-//        int reviewTotal = 0;
-//        try (Connection con = sql2o.open()) {
-//            List
-//        }
-        return 1;
+    public int avgRestaurantRating(int restaurantId) {
+        String sql = "SELECT * FROM reviews WHERE restaurantId = :restaurantId";
+        int reviewTotal = 0;
+        try (Connection con = sql2o.open()) {
+            List<Review> reviews = con.createQuery(sql)
+                    .addParameter("restaurantId", restaurantId)
+                    .executeAndFetch(Review.class);
+            for ( int i = 0; i < reviews.size(); i++) {
+                reviewTotal += reviews.get(i).getRating();
+            } return reviewTotal / reviews.size();
+
+//            for (Review review : reviews) {
+//                reviewTotal += review.getRating();
+//            } return reviewTotal / reviews.size();
+        }
+
     }
 
 

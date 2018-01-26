@@ -20,12 +20,8 @@ public class Sql2oRestaurantDAOTest {
         return new Restaurant("Screen Door", "1234 SE Burnside", "97232", "503-876-5309", "http://screendoor.com", "screendoor@email.com");
     }
 
-    public Review setupNewReview1() {
-        return new Review("Ross F.", "Great Southern Food!", 95, 1);
-    }
-
-    public Review setupNewReview2() {
-        return new Review("Ross F.", "Passable Food!", 55, 1);
+    public Review setupNewReview() {
+        return new Review("Ross F.", "Great Southern Food!", 100, 0);
     }
 
     @Before
@@ -93,12 +89,16 @@ public class Sql2oRestaurantDAOTest {
 
         int testRestaurantId = testRestaurant.getId();
 
-        Review testReview1 = setupNewReview1();
-        reviewDAO.add(testReview1);
-        Review testReview2 = setupNewReview2();
+        Review testReview2 = new Review("Ronald McDonald", "Adequate appetizers!", 75, testRestaurant.getId());
         reviewDAO.add(testReview2);
 
-        assertEquals(75, restaurantDAO.avgRestaurantRating(testRestaurantId));
+        Review testReview1 = new Review("Wendy", "foodcoma!", 95, testRestaurant.getId());
+        reviewDAO.add(testReview1);
+
+
+
+
+        assertEquals(50, restaurantDAO.avgRestaurantRating(testRestaurantId));
 
     }
 
