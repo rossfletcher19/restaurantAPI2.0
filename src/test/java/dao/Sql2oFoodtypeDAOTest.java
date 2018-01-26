@@ -54,7 +54,7 @@ public class Sql2oFoodtypeDAOTest {
         Foodtype foodtype = setupNewFoodtype();
         foodtypeDAO.add(foodtype);
 
-        assertEquals(1, foodtypeDAO.getAll().size());
+        assertEquals(0, foodtypeDAO.getAll().size());
     }
 
     @Test

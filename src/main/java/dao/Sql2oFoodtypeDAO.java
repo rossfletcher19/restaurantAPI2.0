@@ -31,7 +31,12 @@ public class Sql2oFoodtypeDAO implements FoodtypeDAO{
 
     @Override
     public List<Foodtype> getAll() {
-        return null;
+        String sql = "SELECT * FROM foodtypes";
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql)
+                    .executeAndFetch(Foodtype.class);
+        }
+
     }
 //
 //    @Override
