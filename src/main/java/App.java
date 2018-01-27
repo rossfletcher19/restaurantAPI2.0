@@ -2,6 +2,7 @@ import com.google.gson.Gson;
 import dao.Sql2oFoodtypeDAO;
 import dao.Sql2oRestaurantDAO;
 import dao.Sql2oReviewDAO;
+import exceptions.ApiException;
 import models.Foodtype;
 import models.Restaurant;
 import models.Review;
@@ -40,6 +41,11 @@ public class App {
         get("/restaurants/:id", "application/json", (req, res) -> {
             int restaurantId = Integer.parseInt(req.params("id"));
             Restaurant restaurantToFind = restaurantDAO.findById(restaurantId);
+
+            if (restaurantToFind == null){
+                throw new ApiException(404, String.format("No restaurant with the id: \"%s\" exists", req.params("id")));
+            }
+
             return gson.toJson(restaurantToFind);
         });
 
