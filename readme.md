@@ -1,4 +1,4 @@
-# _{Application Name}_
+# _Jadle Restaurant API_
 
 #### _{Brief description of application}, {Date of current version}_
 
@@ -6,7 +6,7 @@
 
 ## Description
 
-_{This is a detailed description of your application. Its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+_{This is a detailed description of your application. Its purpose and ugitsage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
 
 ## Setup/Installation Requirements
 
