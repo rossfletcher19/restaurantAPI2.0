@@ -6,7 +6,7 @@
 
 ## Description
 
-_{A publicly available web-based API that returns data about Restaurants}_
+_A publicly available web-based API that returns data about Restaurants_
 
 ## Setup/Installation Requirements
 
