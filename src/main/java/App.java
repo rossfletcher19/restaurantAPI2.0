@@ -9,7 +9,9 @@ import models.Review;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static spark.Spark.*;
 
@@ -28,6 +30,21 @@ public class App {
         foodtypeDAO = new Sql2oFoodtypeDAO(sql2o);
         reviewDAO = new Sql2oReviewDAO(sql2o);
         conn = sql2o.open();
+
+//        Get and Post Routes
+
+//        get("/restaurants"
+//        get("/restaurants/:id"
+//        get("/restaurants/:id/reviews"
+//        get("/restaurants/:restaurantId/foodtypes"
+//        get("/foodtypes"
+//        get("/foodtypes/:foodtypeId/restaurants"
+
+//        post("/restaurants/new"
+//        post("/restaurants/:restaurantId/reviews/new"
+//        post("/restaurants/:restaurantId/foodtype/:foodtypeId"
+//        post("/foodtypes/new"
+
 
         get("/restaurants", "application/json", (req, res) -> {
             if(restaurantDAO.getAll().size() > 0){
@@ -86,12 +103,25 @@ public class App {
         });
 
 
+        exception(ApiException.class, (exc, req, res) -> {
+            ApiException err = (ApiException) exc;
+            Map<String, Object> jsonMap = new HashMap<>();
+            jsonMap.put("status", err.getStatusCode());
+            jsonMap.put("errorMessage", err.getMessage());
+            res.type("application/json"); //after does not run in case of an exception.
+            res.status(err.getStatusCode()); //set the status
+            res.body(gson.toJson(jsonMap));  //set the output.
+        });
 
 
 
         after((req, res) ->{
             res.type("application/json");
         });
+
+
+
+
 
 
 

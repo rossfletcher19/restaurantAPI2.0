@@ -23,6 +23,10 @@ public class Sql2oRestaurantDAOTest {
         return new Restaurant("Screen Door", "1234 SE Burnside", "97232", "503-876-5309", "http://screendoor.com", "screendoor@email.com");
     }
 
+    public Restaurant setupAltRestaurant (){
+        return new Restaurant("Screen Door", "1234 SE Burnside", "97232", "503-876-5309");
+    }
+
     public Review setupNewReview() {
         return new Review("Ross F.", "Great Southern Food!", 100, 0);
     }
@@ -112,6 +116,24 @@ public class Sql2oRestaurantDAOTest {
         Foodtype[] foodtypes = {testFoodtype, otherTestFoodtype};
 
         assertEquals(restaurantDAO.getAllFoodtypesForARestaurant(testFoodtype.getId()), Arrays.asList(foodtypes));
+    }
+
+    @Test
+    public void deleteingRestaurantAlsoUpdatesJoinTable() throws Exception {
+        Foodtype testFoodtype = new Foodtype("Southern Food");
+        foodtypeDAO.add(testFoodtype);
+
+        Restaurant testRestaurant = setupRestaurant();
+        restaurantDAO.add(testRestaurant);
+
+        Restaurant altRestaurant = setupAltRestaurant();
+        restaurantDAO.add(altRestaurant);
+
+        restaurantDAO.addRestaurantToFoodType(testRestaurant, testFoodtype);
+        restaurantDAO.addRestaurantToFoodType(altRestaurant, testFoodtype);
+
+        restaurantDAO.deleteById(testRestaurant.getId());
+        assertNotEquals(1, restaurantDAO.getAllFoodtypesForARestaurant(testRestaurant.getId()).size());
     }
 
 
