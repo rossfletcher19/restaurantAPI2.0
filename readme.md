@@ -6,7 +6,27 @@
 
 ## Description
 
-_A publicly available web-based API that returns data about Restaurants_
+_A publicly available web-based API that returns data about Restaurants based a user requests._
+
+## Initial User Stories
+
+| User Story  | Input  | Output  |   |
+|---|---|---|---|
+| As a user, I want to see all Restaurants in a specific zip code   |   |   |
+| As a user, I want to see one individual Restaurant  |   |   |
+| As a user, I want to see a specific information such as the Restaurant's name, address, phone number, website, and email  |   |  |
+| As a user, I want to see which kind of Foodtypes a single Restaurant is associated with  |   |   |
+| As a user, I want to see all Restaurants of a specific Foodtype (say, Pho, or Brunch) so I can browse through them   |   |   |
+| As a user, I want to be able to leave a Review of a Restaurant  |   |   |
+| As a user, I want to see the average rating for a Restaurant  |   |   |
+| As a user, I want to see all Reviews for a Restaurant  |   |   |
+| As an admin, I want to be able to add a Restaurant to the database |   |   |
+| As an admin, I want to delete Restaurants that close.   |   |   |
+| As an admin, I want to edit Restaurants where details change   |   |   |
+| As an admin, I want to delete Reviews that are from trolls and spammers  |   |   |
+| As an admin, I want to add a Foodtype so a Restaurant can be associated with it   |   |   |
+
+
 
 ## Setup/Installation Requirements
 
