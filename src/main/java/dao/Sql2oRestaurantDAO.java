@@ -51,6 +51,16 @@ public class Sql2oRestaurantDAO implements RestaurantDAO {
     }
 
     @Override
+    public List<Restaurant> findByZipcode(String zipcode) {
+        String sql = "SELECT * FROM restaurants WHERE zipcode = :zipcode";
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql)
+                    .addParameter("zipcode", zipcode)
+                    .executeAndFetch(Restaurant.class);
+        }
+    }
+
+    @Override
     public void update(int id, String name, String address, String zipcode, String phone, String website, String email) {
         String sql = "UPDATE restaurants SET name = :name, address = :address, zipcode = :zipcode, phone = :phone, website = :website, email = :email WHERE id = :id";
         try(Connection con = sql2o.open()) {
@@ -82,22 +92,6 @@ public class Sql2oRestaurantDAO implements RestaurantDAO {
         } catch (Sql2oException ex) {
             System.out.println(ex);
         }
-    }
-
-    @Override
-    public int avgRestaurantRating(int restaurantId) {
-        String sql = "SELECT * FROM reviews WHERE restaurantId = :restaurantId";
-        int reviewTotal = 0;
-        try (Connection con = sql2o.open()) {
-            List<Review> reviews = con.createQuery(sql)
-                    .addParameter("restaurantId", restaurantId)
-                    .executeAndFetch(Review.class);
-            for ( int i = 0; i < reviews.size(); i++) {
-                reviewTotal += reviews.get(i).getRating();
-            } return reviewTotal / reviews.size();
-
-        }
-
     }
 
     @Override

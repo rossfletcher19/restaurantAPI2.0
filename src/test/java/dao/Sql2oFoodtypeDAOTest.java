@@ -99,4 +99,20 @@ public class Sql2oFoodtypeDAOTest {
         assertEquals(0, restaurantDAO.getAllFoodtypesForARestaurant(testRestaurant.getId()).size());
     }
 
+    @Test
+    public void getAllRestaurantsForAFoodtype() throws Exception {
+        Foodtype foodtype1 = new Foodtype("Ramen");
+        foodtypeDAO.add(foodtype1);
+
+        Restaurant restaurant1 = setupRestaurant();
+        restaurantDAO.add(restaurant1);
+        foodtypeDAO.addFoodTypeToRestaurant(foodtype1, restaurant1);
+
+        Restaurant restaurant2 = setupAltRestaurant();
+        restaurantDAO.add(restaurant2);
+        foodtypeDAO.addFoodTypeToRestaurant(foodtype1, restaurant2);
+
+        assertEquals(4, foodtypeDAO.getAllRestaurantsForAFoodtype(foodtype1.getId()).size());
+    }
+
 }

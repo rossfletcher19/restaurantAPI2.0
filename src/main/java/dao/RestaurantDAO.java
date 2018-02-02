@@ -12,15 +12,16 @@ public interface RestaurantDAO {
     void addRestaurantToFoodType(Restaurant restaurant, Foodtype foodtype); //D & E
 
     //read
-    List<Restaurant> getAll(); //A
-    List<Foodtype> getAllFoodtypesForARestaurant(int id); //D & E - we will implement this soon.
-    int avgRestaurantRating(int id);
+    List<Restaurant> getAll(); //Aa
+    List<Restaurant> findByZipcode(String zipcode); // A
+    List<Foodtype> getAllFoodtypesForARestaurant(int id); //D & E
+
     Restaurant findById(int id); //B & C
 
     //update
-    void update(int id, String name, String address, String zipcode, String phone, String website, String email); //L
+    void update(int id, String name, String address, String zipcode, String phone, String website, String email); //K
 
     //delete
-    void deleteById(int id); //K
+    void deleteById(int id); //L
 
 }

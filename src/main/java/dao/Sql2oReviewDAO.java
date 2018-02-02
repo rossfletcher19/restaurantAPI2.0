@@ -47,6 +47,22 @@ public class Sql2oReviewDAO implements ReviewDAO {
     }
 
     @Override
+    public int avgRestaurantRating(int restaurantId) {
+        String sql = "SELECT * FROM reviews WHERE restaurantId = :restaurantId";
+        int reviewTotal = 0;
+        try (Connection con = sql2o.open()) {
+            List<Review> reviews = con.createQuery(sql)
+                    .addParameter("restaurantId", restaurantId)
+                    .executeAndFetch(Review.class);
+            for ( int i = 0; i < reviews.size(); i++) {
+                reviewTotal += reviews.get(i).getRating();
+            } return reviewTotal / reviews.size();
+
+        }
+
+    }
+
+    @Override
     public void deleteById(int id) {
         String sql = "DELETE from reviews WHERE  id=:id";
         try (Connection con = sql2o.open()) {

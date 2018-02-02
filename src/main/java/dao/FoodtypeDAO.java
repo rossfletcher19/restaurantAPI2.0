@@ -9,7 +9,7 @@ import java.util.List;
 public interface FoodtypeDAO {
 
     //create
-    void add(Foodtype name); // N
+    void add(Foodtype name); //
     void addFoodTypeToRestaurant(Foodtype foodtype, Restaurant restaurant); // D
 
     //read

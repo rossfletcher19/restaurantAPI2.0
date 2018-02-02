@@ -83,6 +83,18 @@ public class Sql2oReviewDAOTest {
     }
 
     @Test
+    public void avgRatingForARestaurantIsCorrectlyCalc() throws Exception {
+        Restaurant testRestaurant = setupRestaurant();
+        restaurantDAO.add(testRestaurant);
+        int testRestaurantId = testRestaurant.getId();
+        Review testReview2 = new Review("Ronald McDonald", "Adequate appetizers!", 75, testRestaurant.getId());
+        reviewDAO.add(testReview2);
+        Review testReview1 = new Review("Wendy", "foodcoma!", 95, testRestaurant.getId());
+        reviewDAO.add(testReview1);
+        assertEquals(85, reviewDAO.avgRestaurantRating(testRestaurantId));
+    }
+
+    @Test
     public void deleteByIdDeletesAReviewByIdCorrectly() throws Exception {
         Restaurant testRestaurant = setupRestaurant();
         restaurantDAO.add(testRestaurant);

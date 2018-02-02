@@ -13,6 +13,7 @@ public interface ReviewDAO {
     //read
     List<Review> getAllReviewsByRestaurant(int restaurantId); // H & G
     List<Review> getAll();
+    int avgRestaurantRating(int id); // G
 
     //update
     // no update yet

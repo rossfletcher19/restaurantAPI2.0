@@ -74,7 +74,6 @@ public class Sql2oFoodtypeDAO implements FoodtypeDAO{
     @Override
     public List<Restaurant> getAllRestaurantsForAFoodtype(int foodtypeid) {
         ArrayList<Restaurant> restaurants = new ArrayList<>();
-
         String joinQuery = "SELECT restaurantid FROM restaurants_foodtypes WHERE foodtypeid = :foodtypeid";
 
         try (Connection con = sql2o.open()) {
