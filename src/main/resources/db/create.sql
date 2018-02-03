@@ -21,6 +21,7 @@ writtenby VARCHAR,
 content VARCHAR,
 rating VARCHAR,
 restaurantid INTEGER,
+createdat BIGINT
 );
 
 CREATE TABLE IF NOT EXISTS restaurants_foodtypes (

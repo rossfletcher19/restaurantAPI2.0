@@ -23,6 +23,10 @@ public class Sql2oRestaurantDAOTest {
         return new Restaurant("Screen Door", "1234 SE Burnside", "97232", "503-876-5309", "http://screendoor.com", "screendoor@email.com");
     }
 
+    public Restaurant setupAltRestaurant (){
+        return new Restaurant("Screen Door", "1234 SE Burnside", "97232", "503-876-5309");
+    }
+
     public Review setupNewReview() {
         return new Review("Ross F.", "Great Southern Food!", 100, 0);
     }
@@ -68,6 +72,13 @@ public class Sql2oRestaurantDAOTest {
     }
 
     @Test
+    public void findByZipcode() throws Exception {
+        Restaurant testRestaurant1 = setupRestaurant();
+        restaurantDAO.add(testRestaurant1);
+        assertEquals(1, restaurantDAO.findByZipcode("97232").size());
+    }
+
+    @Test
     public void updateCorrectlyUpdatesRestaurantProperties() throws Exception {
         Restaurant testRestaurant = setupRestaurant();
         restaurantDAO.add(testRestaurant);
@@ -84,17 +95,6 @@ public class Sql2oRestaurantDAOTest {
         assertEquals(0, restaurantDAO.getAll().size());
     }
 
-    @Test
-    public void avgRatingForARestaurantIsCorrectlyCalc() throws Exception {
-        Restaurant testRestaurant = setupRestaurant();
-        restaurantDAO.add(testRestaurant);
-        int testRestaurantId = testRestaurant.getId();
-        Review testReview2 = new Review("Ronald McDonald", "Adequate appetizers!", 75, testRestaurant.getId());
-        reviewDAO.add(testReview2);
-        Review testReview1 = new Review("Wendy", "foodcoma!", 95, testRestaurant.getId());
-        reviewDAO.add(testReview1);
-        assertEquals(85, restaurantDAO.avgRestaurantRating(testRestaurantId));
-    }
 
     @Test
     public void getAllFoodtypesForARestaurant() throws Exception {
@@ -112,6 +112,24 @@ public class Sql2oRestaurantDAOTest {
         Foodtype[] foodtypes = {testFoodtype, otherTestFoodtype};
 
         assertEquals(restaurantDAO.getAllFoodtypesForARestaurant(testFoodtype.getId()), Arrays.asList(foodtypes));
+    }
+
+    @Test
+    public void deleteingRestaurantAlsoUpdatesJoinTable() throws Exception {
+        Foodtype testFoodtype = new Foodtype("Southern Food");
+        foodtypeDAO.add(testFoodtype);
+
+        Restaurant testRestaurant = setupRestaurant();
+        restaurantDAO.add(testRestaurant);
+
+        Restaurant altRestaurant = setupAltRestaurant();
+        restaurantDAO.add(altRestaurant);
+
+        restaurantDAO.addRestaurantToFoodType(testRestaurant, testFoodtype);
+        restaurantDAO.addRestaurantToFoodType(altRestaurant, testFoodtype);
+
+        restaurantDAO.deleteById(testRestaurant.getId());
+        assertNotEquals(1, restaurantDAO.getAllFoodtypesForARestaurant(testRestaurant.getId()).size());
     }
 
 
