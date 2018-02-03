@@ -6,17 +6,20 @@ import java.util.Date;
 
 public class Review {
 
+    private int id;
     private String writtenBy;
     private String content;
     private int rating;
     private int restaurantId;
-    private int id;
+    private long createdat;
+
 
     public Review(String writtenBy, String content, int rating, int restaurantId) {
         this.writtenBy = writtenBy;
         this.content = content;
         this.rating = rating;
         this.restaurantId = restaurantId;
+        this.createdat = System.currentTimeMillis();
     }
 
 
@@ -60,6 +63,21 @@ public class Review {
         this.restaurantId = restaurantId;
     }
 
+    public long getCreatedat() {
+        return createdat;
+    }
+
+    public void setCreatedat() {
+        this.createdat = System.currentTimeMillis();
+    }
+
+    public String getFormattedCreatedAt() {
+        Date date = new Date(createdat);
+        String datePatternToUse = "MM/dd/yyyy @ K:mm a";
+
+        SimpleDateFormat sdf = new SimpleDateFormat(datePatternToUse);
+        return sdf.format(date);
+    }
 
     @Override
     public boolean equals(Object o) {
