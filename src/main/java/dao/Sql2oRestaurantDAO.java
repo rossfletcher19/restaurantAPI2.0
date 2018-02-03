@@ -129,6 +129,4 @@ public class Sql2oRestaurantDAO implements RestaurantDAO {
         }
         return foodtypes;
     }
-
-
 }

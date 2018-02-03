@@ -19,6 +19,6 @@ public interface ReviewDAO {
     // no update yet
 
     //delete
-    void deleteById(int id); //M
+    void deleteById(int id); // L
 
 }

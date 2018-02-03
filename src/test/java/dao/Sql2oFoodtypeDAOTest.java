@@ -112,7 +112,7 @@ public class Sql2oFoodtypeDAOTest {
         restaurantDAO.add(restaurant2);
         foodtypeDAO.addFoodTypeToRestaurant(foodtype1, restaurant2);
 
-        assertEquals(4, foodtypeDAO.getAllRestaurantsForAFoodtype(foodtype1.getId()).size());
+        assertEquals(2, foodtypeDAO.getAllRestaurantsForAFoodtype(foodtype1.getId()).size());
     }
 
 }
